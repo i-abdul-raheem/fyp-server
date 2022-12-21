@@ -157,6 +157,25 @@ const capitalSchema = Schema({
   },
 });
 
+const salarySchema = Schema({
+  account: {
+    type: mongoose.Types.ObjectId,
+    required: true
+  },
+  amount: {
+    type: Number,
+    required: true
+  },
+  date: {
+    type: String,
+    required: true
+  },
+  payed: {
+    type: Boolean,
+    default: false
+  }
+})
+
 const Department = mongoose.model("Department", departmentSchema);
 const RawMaterial = mongoose.model("RawMaterial", rawMaterialSchema);
 const Product = mongoose.model("Product", productSchema);
@@ -165,6 +184,7 @@ const Employee = mongoose.model("Employee", employeeSchema);
 const Expense = mongoose.model("Expense", expenseSchema);
 const Attendance = mongoose.model("Attendance", attendanceSchema);
 const Capital = mongoose.model("Capital", capitalSchema);
+const Salary = mongoose.model("Salary", salarySchema);
 
 module.exports = {
   Department,
@@ -175,4 +195,5 @@ module.exports = {
   Expense,
   Attendance,
   Capital,
+  Salary
 };
