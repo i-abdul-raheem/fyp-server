@@ -3,6 +3,7 @@ const departments = require("./departments");
 const products = require("./products");
 const rawMaterials = require("./rawMaterials");
 const accounts = require("./accounts");
+const employees = require("./employees");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
@@ -22,5 +23,6 @@ route.use("/departments", departments);
 route.use("/products", products);
 route.use("/rawMaterials", rawMaterials);
 route.use("/accounts", accounts);
+route.use("/employees", employees);
 
 module.exports = route;
