@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { Product } = require("../model/model");
+const { Product } = require("../models/model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 // Get all products

@@ -57,8 +57,8 @@ const accountSchema = Schema({
   },
   status: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const employeeSchema = Schema({
@@ -96,16 +96,65 @@ const employeeSchema = Schema({
   },
   salary: {
     type: String,
-    required: true
+    required: true,
+  },
+  salaryPerMinute: {
+    type: Number,
+    required: true,
   },
   status: {
     type: Boolean,
-    required: true
+    required: true,
   },
   confirmed: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+});
+
+const expenseSchema = Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  amount: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+});
+
+const attendanceSchema = Schema({
+  cnic: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  checkIn: {
+    type: String,
+    required: true,
+  },
+  checkOut: {
+    type: String,
+    required: false,
+  },
+});
+
+const capitalSchema = Schema({
+  account: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+  },
+  amount: {
+    type: String,
+    required: true,
+  },
 });
 
 const Department = mongoose.model("Department", departmentSchema);
@@ -113,5 +162,17 @@ const RawMaterial = mongoose.model("RawMaterial", rawMaterialSchema);
 const Product = mongoose.model("Product", productSchema);
 const Account = mongoose.model("Account", accountSchema);
 const Employee = mongoose.model("Employee", employeeSchema);
+const Expense = mongoose.model("Expense", expenseSchema);
+const Attendance = mongoose.model("Attendance", attendanceSchema);
+const Capital = mongoose.model("Capital", capitalSchema);
 
-module.exports = { Department, RawMaterial, Product, Account, Employee };
+module.exports = {
+  Department,
+  RawMaterial,
+  Product,
+  Account,
+  Employee,
+  Expense,
+  Attendance,
+  Capital,
+};

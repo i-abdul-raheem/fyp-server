@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { Employee } = require("../model/model");
+const { Employee } = require("../models/model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 function setResponse(status = null, message = null, data = null, resp) {
@@ -184,6 +184,9 @@ route.post("/", async (req, res) => {
     return setResponse(405, "Salary can not contain symbol", null, res);
   }
   data.status = true;
+  const eSalary = parseFloat(data.salary);
+  const minuteSalary = (eSalary / 40) / 60;
+  data.salaryPerMinute = Math.round(minuteSalary);
   const newEmployee = new Employee(data);
   newEmployee.save();
   return setResponse(201, "Employee Created", newEmployee, res);
@@ -413,6 +416,23 @@ route.put("/:id/deactivate", async (req, res) => {
     { $set: { status: false } }
   );
   setResponse(200, "Employee deactivated", updated, res);
+});
+
+route.put("/:id/confirm", async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    return setResponse(405, "Invalid ID", null, res);
+  }
+  const employeeExist = await Employee.findOne({
+    _id: ObjectId(req.params.id),
+  });
+  if (!employeeExist) {
+    return setResponse(404, "Employee not found", null, res);
+  }
+  const updated = await Employee.updateOne(
+    { _id: ObjectId(req.params.id) },
+    { $set: { confirmed: true } }
+  );
+  setResponse(200, "Employee request confirmed", updated, res);
 });
 
 module.exports = route;

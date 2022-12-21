@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { Department } = require("../model/model");
+const { Department } = require("../models/model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 // Get all departments

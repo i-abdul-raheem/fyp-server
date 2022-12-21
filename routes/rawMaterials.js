@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { RawMaterial } = require("../model/model");
+const { RawMaterial } = require("../models/model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 // Get all rawMaterials

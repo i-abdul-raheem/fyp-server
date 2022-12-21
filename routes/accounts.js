@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { Account } = require("../model/model");
+const { Account } = require("../models/model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 function setResponse(status = null, message = null, data = null, resp) {

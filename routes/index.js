@@ -4,6 +4,9 @@ const products = require("./products");
 const rawMaterials = require("./rawMaterials");
 const accounts = require("./accounts");
 const employees = require("./employees");
+const expenses = require("./expenses");
+const attendance = require("./attendance");
+const capitals = require("./capitals");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
@@ -24,5 +27,8 @@ route.use("/products", products);
 route.use("/rawMaterials", rawMaterials);
 route.use("/accounts", accounts);
 route.use("/employees", employees);
+route.use("/expenses", expenses);
+route.use("/attendance", attendance);
+route.use("/capitals", capitals);
 
 module.exports = route;
