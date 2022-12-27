@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { Expense } = require("../models/model");
+const { Expense, Purchase } = require("../models/model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 function setResponse(status = null, message = null, data = null, resp) {
@@ -79,7 +79,7 @@ route.post("/", async (req, res) => {
   const now = `${month}/${day}/${year}`;
   data.date = now;
   const newExpense = new Expense(data);
-  newExpense.save();
+  await newExpense.save();
   return setResponse(201, "Expense Added", newExpense, res);
 });
 

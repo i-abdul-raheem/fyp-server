@@ -160,21 +160,52 @@ const capitalSchema = Schema({
 const salarySchema = Schema({
   account: {
     type: mongoose.Types.ObjectId,
-    required: true
+    required: true,
   },
   amount: {
     type: Number,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   payed: {
     type: Boolean,
-    default: false
+    default: false,
+  },
+});
+
+const purchaseSchema = Schema({
+  vendor: {
+    type: String,
+    required: true
+  },
+  paidAmount: {
+    type: Number,
+    required: true
+  },
+  rawMaterial: {
+    type: Array,
+    required: true
+  },
+  expense: {
+    type: Array,
+    default: null
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  invoice: {
+    type: String,
+    required: true,
+  },
+  returns: {
+    type: Array,
+    default: []
   }
-})
+});
 
 const Department = mongoose.model("Department", departmentSchema);
 const RawMaterial = mongoose.model("RawMaterial", rawMaterialSchema);
@@ -185,6 +216,7 @@ const Expense = mongoose.model("Expense", expenseSchema);
 const Attendance = mongoose.model("Attendance", attendanceSchema);
 const Capital = mongoose.model("Capital", capitalSchema);
 const Salary = mongoose.model("Salary", salarySchema);
+const Purchase = mongoose.model("Purchase", purchaseSchema);
 
 module.exports = {
   Department,
@@ -195,5 +227,6 @@ module.exports = {
   Expense,
   Attendance,
   Capital,
-  Salary
+  Salary,
+  Purchase,
 };
