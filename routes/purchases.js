@@ -21,11 +21,14 @@ const iterateWithFunction = (data, func) => {
 };
 
 function getQuantity(data, id) {
+  if (data.length === 0) return 0;
+  let qty = 0;
   for (let i = 0; i < data.length; i++) {
     if (data[i].material == id) {
-      return data[i].quantity;
+      qty = qty + parseInt(data[i].quantity);
     }
   }
+  return qty;
 }
 
 // Get all purchases
@@ -139,7 +142,8 @@ route.put("/:id", async (req, res) => {
         return true;
       }
       if (
-        parseInt(i.quantity) >
+        parseInt(getQuantity(myPurchase.returns, i.material)) +
+          parseInt(i.quantity) >
         parseInt(getQuantity(myPurchase.rawMaterial, i.material))
       ) {
         return true;
@@ -148,6 +152,7 @@ route.put("/:id", async (req, res) => {
   ) {
     return setResponse(405, "Invalid Return", null, res);
   }
+  const updatedData = [...myPurchase.returns, ...data.rawMaterial];
   const update = await Purchase.updateOne(
     { _id: ObjectId(req.params.id) },
     { $set: { returns: updatedData } }
