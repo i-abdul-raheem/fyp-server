@@ -9,6 +9,7 @@ const attendance = require("./attendance");
 const capitals = require("./capitals");
 const salary = require("./salary");
 const purchases = require("./purchases");
+const sales = require("./sales");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
@@ -34,5 +35,6 @@ route.use("/attendance", attendance);
 route.use("/capitals", capitals);
 route.use("/salary", salary);
 route.use("/purchases", purchases);
+route.use("/sales", sales);
 
 module.exports = route;

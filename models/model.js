@@ -207,6 +207,37 @@ const purchaseSchema = Schema({
   }
 });
 
+const saleSchema = Schema({
+  customer: {
+    type: String,
+    required: true
+  },
+  receivedAmount: {
+    type: Number,
+    required: true
+  },
+  product: {
+    type: Array,
+    required: true
+  },
+  expense: {
+    type: Array,
+    default: null
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  invoice: {
+    type: String,
+    required: true,
+  },
+  returns: {
+    type: Array,
+    default: []
+  }
+});
+
 const Department = mongoose.model("Department", departmentSchema);
 const RawMaterial = mongoose.model("RawMaterial", rawMaterialSchema);
 const Product = mongoose.model("Product", productSchema);
@@ -217,6 +248,7 @@ const Attendance = mongoose.model("Attendance", attendanceSchema);
 const Capital = mongoose.model("Capital", capitalSchema);
 const Salary = mongoose.model("Salary", salarySchema);
 const Purchase = mongoose.model("Purchase", purchaseSchema);
+const Sale = mongoose.model("Sale", saleSchema);
 
 module.exports = {
   Department,
@@ -229,4 +261,5 @@ module.exports = {
   Capital,
   Salary,
   Purchase,
+  Sale,
 };
